@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Craftzlife — Lê Khải Hoàn</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(160deg, #eef2f3, #dff1ff, #f5fbff);
+      background-size: 400% 400%;
+      animation: gradientMotion 30s ease infinite;
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientMotion {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .content {
+      max-width: 640px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .github-profile {
+      margin-bottom: 1.5rem;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      max-width: 400px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 1.25rem;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+      margin: 0 0.75rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="github-profile">
+      <a href="https://github.com/craftzlife" target="_blank">
+        <img src="https://github.com/craftzlife.png" alt="Craftzlife GitHub Avatar"
+             style="width: 96px; height: 96px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.15);"/>
+        <div style="margin-top: 0.5rem; font-weight: 500;">@craftzlife</div>
+      </a>
+    </div>
+
+    <h1>Craftzlife</h1>
+    <p>by Lê Khải Hoàn — Backend Systems Architect & Cloud Infrastructure Specialist</p>
+
+    <p>
+      I build scalable backend systems, cloud-native architectures (AWS), and elegant solutions with clarity and care.<br />
+      Passionate about system design, DevOps, optimization, and thoughtful naming.
+    </p>
+
+    <p>
+      <a href="https://github.com/craftzlife" target="_blank">GitHub</a>
+      <a href="mailto:contact@craftzlife.com">Email</a>
+    </p>
+
+    <div class="footer">© 2025 Craftzlife</div>
+  </div>
+</body>
+</html>
+
