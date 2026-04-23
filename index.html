@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Craftzlife — Lê Khải Hoàn</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #ffffff;
@@ -13,8 +11,6 @@
     --accent: #3b82f6;
     --muted: #666666;
     --divider: #eeeeee;
-    --heading: 'Instrument Serif', serif;
-    --mono: 'DM Mono', monospace;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -34,10 +30,11 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--heading);
+    font-family: Inter, system-ui, sans-serif;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.7;
     overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 
   .container {
@@ -46,13 +43,11 @@
     padding: 0 40px;
   }
 
-  /* Navigation */
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px 0;
-    font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -72,19 +67,18 @@
 
   /* Hero */
   .hero {
-    padding: 80px 0 100px;
+    padding: 40px 0 60px;
     max-width: 900px;
   }
   .hero h1 {
-    font-size: clamp(36px, 7.5vw, 90px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    font-size: clamp(28px, 4.5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     font-weight: 400;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
   .hero h1 em { font-style: italic; color: var(--accent); }
   .hero p {
-    font-family: var(--mono);
     font-size: 14px;
     color: var(--muted);
     max-width: 400px;
@@ -186,6 +180,36 @@
     max-width: 400px;
   }
 
+  /* Bio Section */
+  .bio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+  }
+  .bio-content {
+    grid-column: 2 / span 10;
+  }
+  .bio-item {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .bio-item:last-child { border-bottom: none; }
+  .bio-year {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .bio-text {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
   /* Not Fit */
   .not-fit {
     padding: 80px 0;
@@ -261,6 +285,9 @@
     }
     .project, .project:nth-child(even) { grid-column: span 12; margin-bottom: 48px; }
     .method-item, .method-item:nth-child(2) { grid-column: span 12; margin-top: 0; margin-bottom: 40px; }
+    .bio-content { grid-column: span 12; }
+    .bio-item { flex-direction: column; gap: 8px; }
+    .bio-year { min-width: auto; }
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
     .footer-links { flex-direction: column; gap: 16px; }
   }
@@ -287,12 +314,15 @@
 <body>
 
 <div class="container">
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="https://github.com/craftzlife.png" alt="Hoàn">
-      <span>Hoàn — craftzman</span>
-    </a>
-    <div>Available 2026</div>
+  <nav style="align-items: center;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <img src="https://github.com/craftzlife.png" alt="Hoàn" style="width: 48px; height: 48px; border-radius: 50%;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <p style="color: var(--text); font-size: 16px; margin: 0; font-weight: 600;">LÊ KHẢI HOÀN</p>
+        <p style="color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Software engineer with a strong sense of craftsmanship</p>
+      </div>
+    </div>
+    <div style="margin-top: 4px;">Available 2026</div>
   </nav>
 
   <main>
@@ -314,12 +344,60 @@
       </div>
     </section>
 
+    <section id="bio">
+      <span class="section-label reveal" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 40px; display: block;">Bio</span>
+      <div class="bio-grid">
+        <div class="bio-content">
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2025 — Present</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">Independent software engineer, working solo</div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2019</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">
+              Care Connect Vietnam — Software Engineer, Technical Sub-lead, ISMS Leader.
+              <div style="font-size: 16px; color: var(--muted); margin-top: 12px;">A place that gave me room to grow, and people who trusted me along the way.</div>
+            </div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2016</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">Returned to university (HUTECH), but left halfway. Not everything goes as planned.</div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2015</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">
+              FPT Software, Ho Chi Minh City — Software Engineer → Project Manager.
+              <div style="font-size: 16px; color: var(--muted); margin-top: 12px;">Where I met mentors and teammates who shaped how I work today.</div>
+            </div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2012</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">
+              <div>Fujinet — Software Engineer.<br>The beginning of the path, with an uncertain direction</div>
+            </div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">2009</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">Started studying Information Technology, not really knowing where it would lead.</div>
+          </div>
+          <div class="bio-item reveal">
+            <div class="bio-year" style="font-size: 14px; color: var(--muted); min-width: 140px; flex-shrink: 0;">1991</div>
+            <div class="bio-text" style="font-size: 20px; line-height: 1.5; color: var(--text);">
+              Born in Hà Nam, a northern province of Vietnam.
+              <div style="font-size: 16px; color: var(--muted); margin-top: 12px;">Grew up in a small town — a normal childhood, with its share of trouble, mischief, and lessons learned along the way.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
+    <div class="footer-bottom">
       <div class="footer-links">
         <a href="https://github.com/craftzlife" target="_blank">Github</a>
-        <a href="mailto:hoanlk@craftzlife.com">Email</a>
+        <a href="mailto:hoanlk@craftzlife.com" id="emailLnk">Email</a>
       </div>
       <div>&copy; 2026 Lê Khải Hoàn</div>
     </div>
