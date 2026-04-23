@@ -1,105 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Craftzlife — Lê Khải Hoàn</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background: linear-gradient(160deg, #eef2f3, #dff1ff, #f5fbff);
-      background-size: 400% 400%;
-      animation: gradientMotion 30s ease infinite;
-      color: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craftzlife — Lê Khải Hoàn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --accent: #3b82f6;
+    --muted: #666666;
+    --divider: #eeeeee;
+    --heading: 'Instrument Serif', serif;
+    --mono: 'DM Mono', monospace;
+  }
 
-    @keyframes gradientMotion {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --accent: #60a5fa;
+      --muted: #999999;
+      --divider: #222222;
     }
+  }
 
-    .content {
-      max-width: 640px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.75);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(8px);
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .github-profile {
-      margin-bottom: 1.5rem;
-    }
+  html { scroll-behavior: smooth; }
 
-    iframe {
-      border: none;
-      width: 100%;
-      max-width: 400px;
-      height: 200px;
-      margin: 0 auto;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--heading);
+    font-weight: 400;
+    line-height: 1.4;
+    overflow-x: hidden;
+  }
 
-    h1 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-    }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-top: 1.25rem;
-    }
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-logo img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
 
-    a {
-      color: #0077cc;
-      text-decoration: none;
-      margin: 0 0.75rem;
-    }
+  /* Hero */
+  .hero {
+    padding: 80px 0 100px;
+    max-width: 900px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 7.5vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 400px;
+    line-height: 1.6;
+    margin-left: 20%;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  /* Essay Section */
+  .essay-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+    padding-top: 24px;
+  }
+  .essay-column {
+    grid-column: span 5;
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .essay-column:nth-child(1) { grid-column: 2 / span 5; }
+  .essay-column:nth-child(2) { grid-column: 7 / span 5; margin-top: 32px; color: var(--text); }
+  .essay-column p { margin-bottom: 24px; }
+  .essay-column p em { color: var(--accent); }
 
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #666;
+  /* Section Styles */
+  section { padding: 64px 0; border-top: 1px solid var(--divider); }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 40px;
+    display: block;
+  }
+
+  /* Selected Work */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+  }
+  .project {
+    grid-column: span 10;
+    margin-bottom: 80px;
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+  .project:nth-child(even) { grid-column: 3 / span 10; }
+  
+  .proj-info {
+    max-width: 600px;
+  }
+  .proj-num {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 20px;
+  }
+  .proj-title {
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .proj-title em { font-style: italic; }
+  .proj-tags {
+    display: flex;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* Methodology */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+  }
+  .method-item {
+    grid-column: span 6;
+  }
+  .method-item:nth-child(2) {
+    grid-column: 7 / span 6;
+    margin-top: 40px;
+  }
+  .method-item h3 {
+    font-size: 48px;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .method-item p {
+    font-size: 20px;
+    color: var(--muted);
+    max-width: 400px;
+  }
+
+  /* Not Fit */
+  .not-fit {
+    padding: 80px 0;
+    text-align: right;
+  }
+  .not-fit h2 {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1.1;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+  .not-fit h2 span { display: block; color: var(--muted); font-size: 0.5em; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 10px; }
+
+  /* Footer */
+  footer {
+    padding: 80px 0 40px;
+    border-top: 1px solid var(--divider);
+  }
+  .footer-cta {
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: color 0.3s;
+  }
+  .footer-cta:hover { color: var(--accent); }
+  .footer-cta em { font-style: italic; }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 40px;
+  }
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* Utilities */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .hero { padding: 48px 0 60px; }
+    .hero h1 { font-size: 36px; }
+    .hero p { margin-left: 0; margin-top: 32px; }
+    .essay-column, .essay-column:nth-child(1), .essay-column:nth-child(2) { 
+      grid-column: span 12; 
+      margin-top: 0; 
+      margin-bottom: 32px; 
+      font-size: 18px;
     }
-  </style>
+    .project, .project:nth-child(even) { grid-column: span 12; margin-bottom: 48px; }
+    .method-item, .method-item:nth-child(2) { grid-column: span 12; margin-top: 0; margin-bottom: 40px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .footer-links { flex-direction: column; gap: 16px; }
+  }
+
+  #toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
 </head>
 <body>
-  <div class="content">
-    <div class="github-profile">
-      <a href="https://github.com/craftzlife" target="_blank">
-        <img src="https://github.com/craftzlife.png" alt="Craftzlife GitHub Avatar"
-             style="width: 96px; height: 96px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.15);"/>
-        <div style="margin-top: 0.5rem; font-weight: 500;">@craftzlife</div>
-      </a>
+
+<div class="container">
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="https://github.com/craftzlife.png" alt="Hoàn">
+      <span>Hoàn — craftzman</span>
+    </a>
+    <div>Available 2026</div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1 class="reveal">Making it <em>run</em> is the start.<br>Keeping it <em>running</em> is the work.</h1>
+    </section>
+
+    <section id="essay">
+      <div class="essay-grid">
+        <div class="essay-column reveal">
+          <p>There was a time I thought software existed to solve problems. Later, I realized most of the work is cleaning up what was solved the wrong way.</p>
+          <p>I used to write anything as long as it worked. Then things started coming back. Not big failures — but enough to cost time, repeat themselves, and wear you down.</p>
+        </div>
+        <div class="essay-column reveal" style="transition-delay: 0.1s;">
+          <p>I started spending more time thinking before writing. Fewer lines of code, but each one carried more weight.</p>
+          <p>I no longer care if the code looks beautiful. I care whether it survives over time. A good system, to me, is one that does not need much explanation.</p>
+          <p><em>If anything has changed, it is that I speak less about what I do — and take more care in what I choose to keep.</em></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+      <div class="footer-links">
+        <a href="https://github.com/craftzlife" target="_blank">Github</a>
+        <a href="mailto:hoanlk@craftzlife.com">Email</a>
+      </div>
+      <div>&copy; 2026 Lê Khải Hoàn</div>
     </div>
+  </footer>
+</div>
 
-    <h1>Craftzlife</h1>
-    <p> Lê Khải Hoàn — A Servant Leader, Backend Systems Architect & Cloud Infrastructure Engineer</p>
+<div id="toast">Email copied to clipboard</div>
 
-    <p>
-      I build scalable backend systems, cloud-native architectures (AWS), and elegant solutions<br />
-      Passionate about System design, DevOps, Optimization.
-    </p>
+<script>
+  const observe = () => {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  };
 
-    <p>
-      <a href="https://github.com/craftzlife" target="_blank">GitHub</a>
-      <a href="mailto:hoanlk@craftzlife.com">Email</a>
-    </p>
+  const showToast = (msg) => {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  };
 
-    <div class="footer">© 2025 Craftzlife</div>
-  </div>
+  window.addEventListener('load', () => {
+    observe();
+
+    document.getElementById('emailLnk').addEventListener('click', (e) => {
+      if (window.innerWidth > 768) {
+        e.preventDefault();
+        const email = 'hoanlk@craftzlife.com';
+        navigator.clipboard.writeText(email).then(() => {
+          showToast('Email copied to clipboard');
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>
-
